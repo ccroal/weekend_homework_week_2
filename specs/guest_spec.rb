@@ -11,9 +11,9 @@ class GuestTest < MiniTest::Test
     @guest = Guest.new("Donna", 100, song1)
 
     song2 = Song.new("Common People", "Pulp")
-    song3 = Song.new("Material Girl", "Madonna")
+    @song3 = Song.new("Material Girl", "Madonna")
 
-    songs = [song1, song2, song3]
+    songs = [song1, song2,]
 
     @room = Room.new(2, 4, 5, songs)
 
@@ -42,5 +42,14 @@ class GuestTest < MiniTest::Test
 
   def test_sufficient_funds()
     assert_equal(true, @guest.sufficient_funds(@room))
+  end
+
+  def test_celebrate_favourite_song_in_room()
+    assert_equal("Whoo!", @guest.favourite_song_celebration(@room))
+  end
+
+  def test_celebrate_favourite_song_not_in_room()
+    guest2 = Guest.new("David", 100, @song3)
+    assert_equal(false, guest2.favourite_song_celebration(@room))
   end
 end
