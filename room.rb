@@ -30,4 +30,6 @@ class Room
   def add_guest_to_room(guest)
     @guests.push(guest)
   end
+
+  
 end

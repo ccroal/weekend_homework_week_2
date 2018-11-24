@@ -7,8 +7,16 @@ require_relative('../room.rb')
 class GuestTest < MiniTest::Test
 
   def setup()
-    favourite_song = Song.new("Swing Life Away", "Rise Against")
-    @guest = Guest.new("Donna", 100, favourite_song)
+    song1 = Song.new("Swing Life Away", "Rise Against")
+    @guest = Guest.new("Donna", 100, song1)
+
+    song2 = Song.new("Common People", "Pulp")
+    song3 = Song.new("Material Girl", "Madonna")
+
+    songs = [song1, song2, song3]
+
+    @room = Room.new(2, 4, 5, songs)
+
   end
 
   def test_guest_has_name()
@@ -25,5 +33,14 @@ class GuestTest < MiniTest::Test
 
   def test_guest_can_whoo()
     assert_equal("Whoo!", @guest.can_whoo)
+  end
+
+  def test_guest_can_pay_reduces_wallet()
+    new_balance = @guest.pay_entry(@room)
+    assert_equal(95, new_balance )
+  end
+
+  def test_sufficient_funds()
+    assert_equal(true, @guest.sufficient_funds(@room))
   end
 end

@@ -11,4 +11,14 @@ class Guest
   def can_whoo()
     return "Whoo!"
   end
+
+  def pay_entry(room)
+    if sufficient_funds(room) == true
+      @wallet -= room.entry_fee
+    end
+  end
+
+  def sufficient_funds(room)
+    @wallet >= room.entry_fee
+  end
 end
