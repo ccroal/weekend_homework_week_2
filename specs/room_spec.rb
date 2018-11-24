@@ -101,4 +101,11 @@ class RoomTest < MiniTest::Test
     assert_equal(10, @room.till)
   end
 
+  def test_guest_check_in_room_full()
+    @room.add_guest_to_room(@guest1)
+    @room.add_guest_to_room(@guest2)
+    @room.guest_check_in(@guest3, @room)
+    assert_equal(2, @room.guest_count())
+  end
+
 end
