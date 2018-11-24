@@ -19,7 +19,15 @@ class Room
     @song_list.count()
   end
 
+  def add_song(song)
+    @song_list.push(song)
+  end
+
   def guest_count()
     @guests.count()
+  end
+
+  def add_guest_to_room(guest)
+    @guests.push(guest)
   end
 end
